@@ -47,9 +47,9 @@ namespace WordToMakdown
                 // TODO: Strip the Xml Header so the Rels can be imported?
                 //srdocument.CopyTo(combined);
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("The file '" + docx + "' appears to be corrupt or the contents cannot be read.");
+                throw new Exception("The file '" + docx + "' appears to be corrupt or the contents cannot be read.", ex);
             }
 
             // XML document converstion/translation to Intermediate (Simple) format
@@ -85,7 +85,7 @@ namespace WordToMakdown
             }
             catch (Exception ex)
             {
-                throw new Exception("The Word file could not be transformed to the intermediate format as it may be corrupt.");
+                throw new Exception("The Word file could not be transformed to the intermediate format as it may be corrupt.", ex);
             }
 
             // TODO: Remove unwanted whitespace (if it exists) in the tags
@@ -112,7 +112,7 @@ namespace WordToMakdown
             }
             catch (Exception ex)
             {
-                throw new Exception("The intermediate format could not be transformed to Markdown. The Word file may be corrupt.");
+                throw new Exception("The intermediate format could not be transformed to Markdown. The Word file may be corrupt.", ex);
             }
 
             return writer2.ToString();
